@@ -1,0 +1,8 @@
+deny from all
+<Files ~ "^\w+\.(gif|jpe?g|png)$">
+    order deny,allow
+    allow from all
+</Files>  
+<IfModule mod_php5.c>
+    php_flag engine off
+</IfModule>      

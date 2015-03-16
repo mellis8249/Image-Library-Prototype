@@ -1,0 +1,175 @@
+/* Slideshows */
+.slides {
+	position: relative;
+	margin-top: 30px;
+}
+
+.slides h2 {
+	display: inline-block;
+	padding-right: 30px;
+	border-right: 1px solid #9b9b9b;
+}
+
+.desc {
+	display: inline-block;
+	margin: 0;
+	position: absolute; 
+	bottom: -62px;
+	left: 210px;
+	z-index: 999;
+}
+
+.rslides li img {
+	border: 5px solid #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+a.prev{
+	position: absolute;
+	right: 110px;
+	display: block;
+	width: 13px;
+	height: 22px;
+	background: url(../images/prev-next.png) no-repeat;
+	background-position: top left;
+	/* Nicolas Gallagher Image replacement technique */
+	text-shadow: none;
+	color: transparent;	
+}
+
+a.prev:hover {
+	background-position: bottom left;
+}
+
+a.next {
+	position: absolute;
+	right: 0;
+	display: block;
+	width: 13px;
+	height: 22px;
+	background: url(../images/prev-next.png) no-repeat;
+	background-position: top right;
+	/* Nicolas Gallagher Image replacement technique */
+	text-shadow: none;
+	color: transparent;	
+}
+
+a.next:hover {
+	background-position: bottom right;
+}
+
+ul.rslides_tabs {
+	position: absolute;
+	right: 20px;
+}
+
+ul.rslides_tabs li {
+	float: left;
+	margin-right: 10px;
+}
+
+ul.rslides_tabs li a {
+	display: block;
+	background: url(../images/pagination.png) no-repeat;
+	background-position: top;
+	width: 20px;
+	height: 21px;
+	/* Nicolas Gallagher Image replacement technique */
+	text-shadow: none;
+	color: transparent;
+}
+
+ul.rslides_tabs li.rslides_here a, ul.rslides_tabs li a:hover {
+	background-position: bottom;
+}
+
+/* rslides styles */
+.rslides {
+  position: relative;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.rslides li {
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+}
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+}
+
+/* Elastislide Style */
+.es-carousel-wrapper {
+	padding:10px 37px 250px;
+	position:relative;
+}
+
+.es-carousel {
+	overflow:hidden;
+}
+
+.es-carousel ul {
+	display:none;
+}
+
+.es-carousel ul li {
+	height:100%;
+	float:left;
+	display:block;
+}
+
+.es-carousel ul li a {
+	display:block;
+	margin: 0 10px;
+}
+
+.es-carousel ul li a img {
+	display:block;
+	border: 5px solid #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	max-height:100%;
+	max-width:100%;
+	
+}
+
+.es-nav span {
+	position:absolute;
+	top:50%;
+	left:0;
+	background:transparent url(../images/prev-next.png) top left no-repeat;
+	width: 13px;
+	height: 22px;
+	margin-top:-13px;
+	text-indent:-9000px;
+	cursor:pointer;
+}
+
+.es-nav span.es-nav-next {
+	right: 0;
+	left:auto;
+	background-position:top right;
+}
+
+.es-nav span:hover {
+	background-position: bottom left;
+}
+
+.es-nav span.es-nav-next:hover {
+	background-position: bottom right;
+}
