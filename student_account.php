@@ -48,6 +48,7 @@ if (!isset($_SESSION['id'])){
         <div class="container"><!--Div class for container-->
             <div class="ten columns"><!--Div class for ten columns-->
                 <?php 
+                  require 'includes/deleteImage.php';
                   require 'includes/displayStudentImages.php'; ?>
             </div><!--End Div for ten columns-->
             <div class="six columns"><!--Div for six columns-->

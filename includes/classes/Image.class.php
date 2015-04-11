@@ -4,6 +4,7 @@ Class Image {
 	private $_db;
     private $msg = array();
     private $error = array();
+    private $is_deleted = false;
 
   	public
     function __construct(DB $db){
@@ -472,8 +473,6 @@ else if (!empty($_GET['searchImages'])){
             echo "</td>";
             echo "</tr>";
             
-            
-            
             echo "</table>";
                 }
             }
@@ -481,14 +480,14 @@ else if (!empty($_GET['searchImages'])){
 
         public 
         function displayCategory(){
-
-
             //$result = $this->_db->query("SELECT COUNT(*) as num FROM images ")
             $result = $this->_db->query('SELECT DISTINCT category FROM images');
             foreach($result as $row){
             echo '<p><a href="images.php?searchImages='.$row['category']. '">'.$row['category'].'</a></p>';
             }
         }
+        
+        //Student
         
         public
         function displayStudentImages(){
@@ -500,26 +499,25 @@ else if (!empty($_GET['searchImages'])){
                 $result = $this->_db->query("SELECT * FROM thumbnails WHERE Author = '$test'");
 
                 foreach($result as $row){
-                    $address = $row['ImageJPEG'];
-                    $thumbnail = substr($address, 52,80);
-                        echo "<table>";
-    echo "<tr>";
-    echo "<th>";
-    echo $row['ImageName'];
-    echo "</th>";
-   // echo "<th> Watermarked Image </th>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "<td>";
-    echo '<img src="' . $thumbnail . '" width="250" height="250" alt="ImageJPEG" />'; 
-    echo "</td>";
-    echo "<td>";
-    echo '<a href="student_account.php?ImageID='.$row['ImageID'].'">Delete Image</a>';
-    echo "</td>";
-    echo "</tr>";
-    echo "<tr>";
-    echo "</tr>";
-    echo "</table>";
+                $address = $row['ImageJPEG'];
+                $thumbnail = substr($address, 52,80);
+                echo "<table>";
+                echo "<tr>";
+                echo "<th>";
+                echo $row['ImageName'];
+                echo "</th>";
+                echo "</tr>";
+                echo "<tr>";
+                echo "<td>";
+                echo '<img src="' . $thumbnail . '" width="250" height="250" alt="ImageJPEG" />'; 
+                echo "</td>";
+                echo "<td>";
+                echo '<a href="student_account.php?ImageID='.$row['ImageID'].'">Delete Image</a>';
+                echo "</td>";
+                echo "</tr>";
+                echo "<tr>";
+                echo "</tr>";
+                echo "</table>";
                 }
             }
             
@@ -529,15 +527,36 @@ else if (!empty($_GET['searchImages'])){
 
         public
         function displayAdminImages(){
+            
+            if(isset($_SESSION['username'])){
+                $result = $this->_db->query("SELECT * FROM thumbnails");
+                foreach($result as $row){
+                $address = $row['ImageJPEG'];
+                $thumbnail = substr($address, 52,80);
+                echo "<table>";
+                echo "<tr>";
+                echo "<th>";
+                echo $row['ImageName'];
+                echo "</th>";
+                echo "</tr>";
+                echo "<tr>";
+                echo "<td>";
+                echo '<img src="' . $thumbnail . '" width="250" height="250" alt="ImageJPEG" />'; 
+                echo "</td>";
+                echo "<td>";
+                echo '<a href="admin_account.php?ImageID='.$row['ImageID'].'">Delete Image</a>';
+                echo "</td>";
+                echo "</tr>";
+                echo "<tr>";
+                echo "</tr>";
+                echo "</table>";
+            }
 
         }
-        
-        public function deleteThumbnail(){
-            
         }
         
         public function deleteImage(){
-             
+            
             $id = $_GET['ImageID'];
             $result = $this->_db->query("SELECT * FROM thumbnails WHERE ImageID = '$id'", null, PDO::FETCH_ASSOC);
             $result2 = $this->_db->query("SELECT * FROM images WHERE ImageID = '$id'", null, PDO::FETCH_ASSOC);
@@ -545,9 +564,6 @@ else if (!empty($_GET['searchImages'])){
                    
                 $address = $row['ImageJPEG'];
                 $thumbnail = substr($address, 52,80);
-                
-                echo $thumbnail;
-                echo "</br>";
                 
                unlink($thumbnail);
             }
@@ -560,27 +576,17 @@ else if (!empty($_GET['searchImages'])){
                 $watermark = substr($address2, 52, 80);
                 $original = substr($address3, 52, 80);
                 
-                echo $watermark;
-                echo "</br>";
-                echo $original;
-                echo "</br>";
-                
               unlink($watermark);
               unlink($original);
                 
             }
              $result3 = $this->_db->query('DELETE FROM thumbnails WHERE ImageID = "'.$id.'" ');
              $result4 = $this->_db->query('DELETE FROM images WHERE ImageID = "'.$id.'" ');
-            // echo '<meta http-equiv="refresh" content= "0;URL=?r=1" />'; 
+             
+             }
+          
         }
-        
-        /*
-        public 
-        function deleteImage(){
-        	$id = $_GET['ImageID'];
-        	$result = $this->_db->query("DELETE FROM thumbnails WHERE ImageID = '$id'");
-        } */
 
-}
+
 
 ?>

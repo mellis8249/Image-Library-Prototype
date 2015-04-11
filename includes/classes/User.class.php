@@ -200,6 +200,10 @@
 					$password = sha1($password);
 					//Stores $_POST
 					$email = $_POST['email'];
+					if ($row = $this->_db->query('SELECT username FROM users WHERE username = "'.$username.'" ')){
+						$this->error[] = 'Username already exists';
+					}
+					else {
 					//Creates the query to insert user into the database and runs the query
 					$this->_db->query('INSERT INTO users (username, password, email, type) VALUES ("'.$username.'", "'.$password.'","'.$email.'", "2")');
 					//Success message
@@ -223,7 +227,7 @@
 					mail($from,$subject2,$message2,$headers2);
 					//Success message
 					$this->msg[] = 'Email sent to Student';
-					// }
+					 }
 				} else $this->error[] = 'Please fill in all fields.';
 				//Error message
 			}
