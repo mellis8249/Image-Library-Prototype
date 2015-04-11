@@ -237,10 +237,11 @@ $original = $_FILES['original']['tmp_name'];
             //Uses the bulletproof class to check for invalid file dimensions
             ->limitDimension(array("height"=>3000, "width"=>3000))
             //Uses the bulletproof class to specify the upload directory and creates one if it doesn't exist
-            ->uploadDir("/customers/b/5/2/valadan.co.uk//httpd.www/prototype/includes/originals")
+            ->uploadDir("/customers/b/5/2/valadan.co.uk//httpd.www/prototype/includes/originals") 
             //Uses the bulletproof class to upload the file and store values in $bulletproof3
             ->upload($_FILES['original']);
         }
+
 
         //Uses the clean_string function to trim and sanitize the variables
         $ImageName  = clean_string($ImageName);
@@ -257,12 +258,57 @@ $original = $_FILES['original']['tmp_name'];
         //$watermarked = escape_output($original);
         //$original = escape_output($original);
 
+        list($width, $height) = $image_size2;
+        
+        $total_pixels = $width * $height; 
+        $megapixels = '' .round($total_pixels / 1000000, 1);
+        
+        $dpiWidth200 = $width / 200;
+        $dpiHeight200 = $height / 200;
+        
+        $dpiWidth300 = $width / 300;
+        $dpiHeight300 = $height / 300;
+        
+        if ($width >= 0 && $height >= 0){
+            if ($width <= 320 && $height <= 240){
+                $price = "2.00";
+            }
+            if ($width >= 640 && $height >= 480){
+                $price = "4.00";
+            }
+            if ($width >= 1024 && $height >= 768){
+                $price = "5.00";
+            }
+            if ($width >= 1280 && $height >= 960){
+                $price = "6.00";
+            }
+            if ($width >= 1536 && $height >= 1180){
+                $price = "8.00";
+            }
+            if ($width >= 1600 && $height >= 1200){
+                $price = "9.00";
+            }
+            if ($width >= 2048 && $height >= 1536){
+                $price = "10.00";
+            }
+            if ($width >= 3032 && $height >= 2008){
+                $price = "12.00";
+            }
+        }
+        
+        if (isset($_SESSION['username'])){
+            $author = $_SESSION['username'];
+        }
         //Creates the query to insert item into the database and runs the query and stores the result in $result
-        $result =  $db->query("INSERT INTO thumbnails(ImageName, ImageDescription, Category, ImageJPEG, ImageFile)   VALUES('$ImageName', '$ImageDescription', '$category', '$thumbnail', '$thumbnail')");
+        $result =  $db->query("INSERT INTO thumbnails(ImageName, ImageDescription, Category, Author,  ImageJPEG, ImageFile) VALUES('$ImageName', '$ImageDescription', '$category', '$author', '$thumbnail', '$thumbnail')");
         //Creates the query to insert item into the database and runs the query and stores the result in $result
-        $result = $db->query("INSERT INTO images (ImageName, ImageDescription, Category, ImagePNG, Original, ImageFile)   VALUES('$ImageName', '$ImageDescription', '$category','$watermarked', '$original', '$watermarked')");
+        $result = $db->query("INSERT INTO images (ImageName, ImageDescription, Category, Author, Price, ImagePNG, Original, ImageWidth, ImageHeight, MegaPixels, DPIWidth200, DPIHeight200, DPIWidth300, DPIHeight300, ImageFile) VALUES('$ImageName', '$ImageDescription', '$category', '$author', '$price', '$watermarked', '$original', '$width', '$height', '$megapixels', '$dpiWidth200', '$dpiHeight200', '$dpiWidth300', '$dpiHeight300', '$watermarked')");
         //If query is successful, outputs the below message to the screen
         echo 'Insert successful';
+        
+       // print_r($image_size2[3]);
+      //  echo $image_size2;
+        //print_r($image_size2['width']);
 
         } catch(\ImageUploader\ImageUploaderException $e){
             //Displays error message from the bulletproof class

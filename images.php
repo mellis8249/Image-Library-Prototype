@@ -20,7 +20,8 @@
             </div><!--End Div for six columns-->
             <div class="six columns"><!--Div class for six columns-->
                 <?php
-                require 'includes/nav.php'; ?><!--Requires nav.php-->
+                require 'includes/nav.php';
+                ?><!--Requires nav.php-->
             </div><!--End Div for six columns-->
             <div class="four columns"><!--Div for four columns-->
                 <?php
@@ -36,12 +37,39 @@
             </div><!--End Div for container slides-->
         </div><!--End Div for container-->
     </div><!--End Div for band header-->
-    <div class="band content2"><!--Div class for band content2-->
+       <div class="band title">
+        <div class="container">
+            <div id="title" class="six columns">
+                <h2> All Images </h2>
+            </div>
+            <div class ="ten columns">
+            <?php
+             require 'includes/searchImages.php';
+            ?>
+            </div>
+
+        </div>
+    </div>
+    
+    
+    
+    <div class="band displayImages"><!--Div class for band content2-->
         <div class="container"><!--Div class for container-->
-            <div class="sixteen columns"><!--Div class for sixteen columns-->
+            <div class="eleven columns"><!--Div class for sixteen columns-->
                 <?php 
-                require 'includes/display_images.php'; ?><!--Requires display_images.php-->
+                require 'includes/insertCart.php';
+                require 'includes/displayImages.php' ?><!--Requires display_images.php-->
             </div><!--End Div for sixteen columns-->
+            <div class="two columns">
+                <?php
+                require 'includes/displayCategory.php';
+                ?>
+            </div>
+            <div class="three columns">
+                <?php
+                require 'includes/displayCart.php';
+                ?>
+            </div>
         </div><!--End Div for container-->
     </div><!--End Div for band content2-->
     <div class="band footer"><!--Div class for band footer-->

@@ -130,6 +130,56 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
 	cursor:pointer;
 }
 
+.band.header #login {
+
+}
+
+.band.title {
+  height: 50px;
+  margin-top:2px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  text-align: center;
+}
+
+.band.title h2 {
+  display: inline-block;
+  padding: 0 15px;
+  position: relative;
+}
+
+.band.title h2:after{
+  background: black;
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.band.title h2:before{
+  background: black;
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.band.title h2:before {
+  right: 100%;
+}
+
+.band.title h2:after {
+  left: 100%;
+}
+
+.band.title #title{
+	margin: 0px;
+}
+
 .band.content {
 	background: #e3e3e3 url(../images/body-bg.jpg);
 }
@@ -148,31 +198,36 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
     border-radius: 10px;
 }
 
-.band.content2 {
+.band.search form {
+	height: 10px;
+}
+
+
+.band.displayImages {
 	background: #e3e3e3 url(../images/body-bg.jpg);
 	padding: 0 0 200px 0px;
 }
 
-.band.content2 h2 {
+.band.displayImages h2 {
 	text-align: center;
 }
 
-.band.content2 p {
+.band.displayImages p {
 	display: block;
 	text-align:center;
 }
 
-.band.content2 table {
+.band.displayImages table {
 	width: auto;
-	padding: 0 10px 10px 190px;
-	margin-right: 200px;
+	padding: 10px 10px 10px 0px;
+	margin-right: 0px;
 	vertical-align:middle;
 	display: inline-block;
 	float:left;
 	table-layout:fixed;
 }
 
-.band.content2 th {
+.band.displayImages th {
 	font-size:18px;
 	padding: 1em;
 	border: 5px solid #fff;
@@ -180,7 +235,7 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
 	text-align: center;
 }
 
-.band.content2 td {
+.band.displayImages td {
 	width: 100px;
 	padding: 10px 10px 0 10px;
 	vertical-align:middle;

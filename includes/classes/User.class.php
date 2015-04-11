@@ -108,7 +108,7 @@
 		public
 		function registerUser() {
 			//Checks if register form has been submitted
-			if ($_POST['register']){
+			if (isset($_POST['register'])){
 				//Checks if the fields are set and not empty
 				if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirm']) && !empty($_POST['email'])){
 					//Checks if password is equal to confirm
@@ -186,7 +186,7 @@
 		public
 		function addStudent(){
 			//Checks if the add student form is submitted
-			if ($_POST['addStudent']){
+			if (isset($_POST['addStudent'])){
 				//Checks if the fields are set and not empty
 				if(!empty($_POST['username']) && !empty($_POST['email'])){
 					//if ($_POST['password'] == $_POST['confirm']) { bang a c number finder in here
@@ -234,7 +234,7 @@
 		function userLogin() {
 			//Checks if login form is submitted
 			
-			if ($_POST['login']){
+			if (isset($_POST['login'])){
 				//Checks if the fields are set and not empty
 				
 				if (isset($_POST['username']) && isset($_POST['password'])){
@@ -270,8 +270,7 @@
 							$this->is_logged = true;
 							//If is_logged is true displays success messages
 							if($this->is_logged = true){
-								$this->msg[] = "Successfully logged in";
-								$this->msg[] = "<a href='login_register.php'>Click to refresh the page</a>";
+								echo '<meta http-equiv="refresh" content= "0;URL=?r=1" />';
 							}
 						} else $this->error[] = 'Wrong username or password.';
 						//Error message
@@ -285,7 +284,7 @@
 		public
 		function updateEmail($username){
 			//Checks if update email form is submitted
-			if ($_POST['updateEmail']){
+			if (isset($_POST['updateEmail'])){
 				//Checks if fields are set and not empty
 				if (isset($_POST['email']) && !empty($_POST['email']) && $_POST['email'] !== $_POST['old_email']) {
 					//Stores $_POST
@@ -303,7 +302,7 @@
 		public
 		function updatePassword($username){
 			//Checks if update password form is submitted
-			if($_POST['updatePassword']){
+			if(isset($_POST['updatePassword'])){
 				//Checks if fields are set and not empty
 				if (isset($_POST['password']) && isset($_POST['newpassword1']) && isset($_POST['newpassword2']) && !empty($_POST['password']) && !empty($_POST['newpassword1']) && !empty($_POST['newpassword2'])) {
 					//Checks if fields are equal to each other

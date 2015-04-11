@@ -32,7 +32,7 @@ if (!isset($_SESSION['id'])){
             </div><!--End Div for sixteen columns-->
             <div class="four columns"><!--Div for four columns-->
                 <?php
-                require 'includes/loginInfo.php'; ?><!--Requires loginInfo.php-->
+                require 'login/loginInfo.php'; ?><!--Requires loginInfo.php-->
             </div><!--End div for four columns-->
             <div class="container slides"><!--Div class for container slides-->
                 <ul class="rslides clearfix"><!--ul class for rslides-->

@@ -2,7 +2,6 @@
 <nav>
    <ul>
 		<li><a href="index.php">Home</a></li>	
-		<li><a href="images.php">All Images</a></li>	
-		<li><a href="login_register.php">Login/Register</a></li>
+		<li><a href="images.php">All Images</a></li>
    </ul>
 </nav>

@@ -1,5 +1,13 @@
-<?php  require 'includes/head.php';
-//Requires head.php ?>
+<?php  require 'includes/head.php'; //Requires head.php
+//Checks if any Session variables are set
+if (!isset($_SESSION['id'])){
+    header('location:protectedpage.php');
+    }
+    if($_SESSION['type'] != 2){
+    header('location:protectedpage.php');
+    exit();
+    }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -36,23 +44,34 @@
             </div><!--End Div for container slides-->
         </div><!--End Div for container-->
     </div><!--End Div for band header-->
-    <div class="band content3"><!--Div class for band content-->
+    <div class="band content"><!--Div class for band content-->
         <div class="container"><!--Div class for container-->
-                  <div class="six columns"><!--Div class for sixteen columns-->
+            <div class="ten columns"><!--Div class for ten columns-->
                 <?php 
-                require 'includes/picked.php'; ?><!--Requires upload_image.php-->
-            </div><!--End Div for sixteen columns-->
-            <div class="six columns">
+                require 'includes/upload_image.php';
+               // require 'includes/test.php'; ?><!--Requires upload_image.php-->
+            </div><!--End Div for ten columns-->
+            <div class="six columns"><!--Div for six columns-->
                 <?php 
-               // require 'includes/insertCart.php';
-                require 'includes/pickedDetails.php'; ?>
-            </div>
-            <div class="four columns">
-                <?php
-               // require 'includes/displayCart.php' ?>
-            </div>
+                require 'includes/content.php'; ?><!--Requires content.php-->
+            </div><!--End Div for six columns-->
         </div><!--End Div for container-->
     </div><!--End Div for band content-->
+    <div class="band slideshow"><!--Div class for band slideshow-->
+        <div class="container"><!--Div class for container-->
+            <div class="sixteen columns"><!--Div class for sixteen columns-->
+                <div class="es-carousel-wrapper" id="carousel"><!--Div class for es-carousel-wrapper with an id of carousel-->
+                    <div class="es-carousel"><!--Div class for es-carousel-->
+                        <h2>Thumbnails</h2>
+                        <ul>
+                            <?php 
+                            require 'includes/slideshow.php'; ?><!--Requires slideshow.php-->
+                        </ul>
+                    </div><!--End Div for es-carousel-->
+                </div><!--End Div for es-carousel-wrapper-->
+            </div><!--End Div for sixteen columns-->
+        </div><!--End Div for container-->
+    </div><!--End Div for band slideshow-->
     <div class="band footer"><!--Div class for band footer-->
         <div class="container"><!--Div class for container-->
             <div class="sixteen columns"><!--Div class for sixteen columns-->

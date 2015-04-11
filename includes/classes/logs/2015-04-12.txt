@@ -1,0 +1,75 @@
+Time : 00:39:20
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+Raw SQL : SELECT * FROM thumbnails WHERE ImageID =
+
+Time : 00:37:02
+SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'Author' in where clause is ambiguous
+Raw SQL : SELECT * FROM thumbnails, images WHERE thumbnails.ImageID = images.ImageID AND Author = 'lindsay'
+
+Time : 00:35:42
+SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'Author' in where clause is ambiguous
+Raw SQL : SELECT * FROM thumbnails, images WHERE thumbnails.ImageID = images.ImageID AND Author = 'lindsay'
+
+Time : 00:34:52
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ' Author = lindsay' at line 1
+Raw SQL : SELECT * FROM thumbnails, images WHERE thumbnails.ImageID = images.ImageID, Author = lindsay
+
+Time : 00:34:33
+SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'Author' in where clause is ambiguous
+Raw SQL : SELECT * FROM thumbnails, images WHERE thumbnails.ImageID = images.ImageID AND Author = lindsay
+
+Time : 00:25:13
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE thumbnails.ImageID = images.ImageID AND ImageID= ""' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE thumbnails.ImageID = images.ImageID AND ImageID= ""
+
+Time : 00:23:47
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = ""' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = ""
+
+Time : 00:22:13
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = ""' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = ""
+
+Time : 00:19:39
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID =' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID =
+
+Time : 00:19:38
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID =' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID =
+
+Time : 00:19:34
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = 69' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = 69
+
+Time : 00:17:46
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = '69'' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = '69'
+
+Time : 00:17:44
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = ''' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = ''
+
+Time : 00:17:43
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = ''' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = ''
+
+Time : 00:17:39
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = ''' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = ''
+
+Time : 00:17:14
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = '..'' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = '..'
+
+Time : 00:17:10
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = '..'' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = '..'
+
+Time : 00:16:35
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = "69"' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = "69"
+
+Time : 00:16:31
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE ImageID = ""' at line 1
+Raw SQL : DELETE FROM thumbnails, images WHERE ImageID = ""

@@ -8,14 +8,29 @@ $user = new User($db);
 //Calls user addStudent() method
 $user->addStudent();
 ?>
+<!--Used with Pure CSS for forms/buttons-->
+<style>
+ .button-addStudent,
+        .button-secondary {
+            color: white;
+            text-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-addStudent {
+            background: #23353e; /* this is a green */
+        }
+
+</style>
 <!--Add Student Form-->
 <h2>Add Student</h2>
-<form action="" method="POST" id="addStudent">
+<form class="pure-form" action="" method="POST" id="addStudent">
+	<fieldset>
 	<?php $user->display_errors(); ?>
 	<?php $user->display_info(); ?>
 	<label for="email">E-mail:</label>
 	<input type="email" id="email" name="email" placeholder="email" />
 	<label for="username">Username:</label>
 	<input type="text" id="username" name="username" placeholder="username" />
-	<input id="button-addStudent" type="submit" name="addStudent" value="Add Student">
+	<button id="button-addStudent" type="submit" name="addStudent" value="Add Student" class="button-addStudent pure-button">Add Student</button>
+</fieldset>
 </form>

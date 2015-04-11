@@ -8,9 +8,22 @@ $user = new User($db);
 //Calls user registerUser() method
 $user->registerUser();
 ?>
+<style>
+ .button-register,
+        .button-secondary {
+            color: white;
+            text-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-register {
+            background: #23353e; /* this is a green */
+        }
+
+</style>
 <!--Register form-->
 <h2>Register Form</h2>
-<form action="" method="POST" id="registerUser">
+<form class="pure-form" action="" method="POST" id="registerUser">
+	<fieldset>
 	<?php  $user->display_errors(); ?>
 	<?php $user->display_info(); ?>
 	<label for="email">E-mail:</label>
@@ -21,5 +34,6 @@ $user->registerUser();
 	<input type="password" id="password" name="password" placeholder="password" />
 	<label for="confirm">Password:</label>
 	<input type="password" id="confirm" name="confirm" placeholder="repeat password" />
-	<input id="button-register" type="submit" name="register" value="Register">
+	<button id="button-register" type="submit" name="register" value="Register" class="button-register pure-button">Register</button>
+</fieldset>
 </form>

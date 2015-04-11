@@ -48,18 +48,17 @@ if (!isset($_SESSION['id'])){
         <div class="container"><!--Div class for container-->
             <div class="ten columns"><!--Div class for ten columns-->
                 <?php 
-                require 'includes/upload_image.php'; ?><!--Requires upload_image.php-->
+                  require 'includes/displayStudentImages.php'; ?>
             </div><!--End Div for ten columns-->
             <div class="six columns"><!--Div for six columns-->
                 <?php 
-                require 'includes/content.php'; ?><!--Requires content.php-->
+             require 'login/updatePassword.php'; ?><!--Requires content.php-->
             </div><!--End Div for six columns-->
         </div><!--End Div for container-->
     </div><!--End Div for band content-->
     <div class="band slideshow"><!--Div class for band slideshow-->
         <div class="container"><!--Div class for container-->
             <div class="sixteen columns"><!--Div class for sixteen columns-->
-                
                 <div class="es-carousel-wrapper" id="carousel"><!--Div class for es-carousel-wrapper with an id of carousel-->
                     <div class="es-carousel"><!--Div class for es-carousel-->
                         <h2>Thumbnails</h2>

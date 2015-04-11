@@ -1,6 +1,5 @@
 <?php 
 session_start();
-error_reporting(0);
 //require 'configuration.php';
 
 function __autoload($class_name) {

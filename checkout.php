@@ -14,18 +14,19 @@
 <body>
     <div class="band header"><!--Div class for band header-->
         <div class="container"><!--Div class for container-->
-            <div class="six columns">
+            <div class="six columns"><!--Div class for six columns-->
                 <?php
                 require 'includes/header.php'; ?><!--Requires header.php-->
-            </div>
-            <div class="six columns"><!--Div class for ten columns-->
+            </div><!--End Div for six columns-->
+            <div class="six columns"><!--Div class for six columns-->
                 <?php
-                require 'includes/nav.php'; ?><!--Requires nav.php-->
-            </div><!--End Div for sixteen columns-->
+                require 'includes/nav.php';
+                ?><!--Requires nav.php-->
+            </div><!--End Div for six columns-->
             <div class="four columns"><!--Div for four columns-->
                 <?php
                 require 'login/loginInfo.php'; ?><!--Requires loginInfo.php-->
-            </div><!--End div for four columns-->
+            </div><!--End Div for four columns-->
             <div class="container slides"><!--Div class for container slides-->
                 <ul class="rslides clearfix"><!--ul class for rslides-->
                     <li><img alt="" src="assets/images/1.jpg"></li>
@@ -36,23 +37,17 @@
             </div><!--End Div for container slides-->
         </div><!--End Div for container-->
     </div><!--End Div for band header-->
-    <div class="band content3"><!--Div class for band content-->
-        <div class="container"><!--Div class for container-->
-                  <div class="six columns"><!--Div class for sixteen columns-->
-                <?php 
-                require 'includes/picked.php'; ?><!--Requires upload_image.php-->
-            </div><!--End Div for sixteen columns-->
-            <div class="six columns">
-                <?php 
-               // require 'includes/insertCart.php';
-                require 'includes/pickedDetails.php'; ?>
-            </div>
-            <div class="four columns">
+    <div class="band content2"><!--Div class for band content2-->
+        <div class="container"><!--Div class for container-->           
+            <div class="sixteen columns">
                 <?php
-               // require 'includes/displayCart.php' ?>
+                require 'includes/addMore.php';
+                require 'includes/removeCart.php';
+                require 'includes/reviewCart.php';
+                ?>
             </div>
         </div><!--End Div for container-->
-    </div><!--End Div for band content-->
+    </div><!--End Div for band content2-->
     <div class="band footer"><!--Div class for band footer-->
         <div class="container"><!--Div class for container-->
             <div class="sixteen columns"><!--Div class for sixteen columns-->
