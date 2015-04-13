@@ -195,7 +195,6 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
 .band.content input {
     display:block;
 	border: 1px solid gray;
-    border-radius: 10px;
 }
 
 .band.search form {
@@ -242,6 +241,38 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
 	border: 5px solid #fff;
 	text-align: center;
 	word-break:break-all;
+}
+
+.band.displayImages #icon {
+    padding: 10px;
+}
+
+.band.reviewOrder {
+    background: #e3e3e3 url(../images/body-bg.jpg);
+	padding: 0 0 200px 0px;
+}
+
+.band.reviewOrder table{
+    width: auto;
+	display: inline-block;
+	float:left;
+	table-layout:fixed;
+}
+
+.band.reviewOrder th, td {
+
+    padding: 11px 11px 0 11px;
+    border: 5px solid #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.band.reviewOrder #test {
+padding: 10px 10px 1000px 10px;
+}
+
+.band.reviewOrder #icon {
+    padding: 10px;
+    
 }
 
 .band.content3 {

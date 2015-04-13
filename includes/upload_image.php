@@ -217,7 +217,7 @@ $original = $_FILES['original']['tmp_name'];
             //Uses the bulletproof class to check for invalid file dimensions
             ->limitDimension(array("height"=>3000, "width"=>3000))
             //Uses the bulletproof class to watermark the image, with the specified watermark image
-            ->watermark('assets/images/watermark3.png', 'bottom-right')
+            ->watermark('assets/images/watermark3.png', 'center')
             //Uses the bulletproof class to specify the upload directory and creates one if it doesn't exist
             ->uploadDir("/customers/b/5/2/valadan.co.uk//httpd.www/prototype/includes/watermarked")
             //Uses the bulletproof class to upload the file and store values in $bulletproof2

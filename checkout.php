@@ -37,7 +37,15 @@
             </div><!--End Div for container slides-->
         </div><!--End Div for container-->
     </div><!--End Div for band header-->
-    <div class="band content2"><!--Div class for band content2-->
+    <div class="band title">
+        <div class="container">
+            <div class="sixteen columns">
+            <h2> Review </h2>
+            </div>
+        </div>
+    </div>
+    
+    <div class="band reviewOrder"><!--Div class for band content2-->
         <div class="container"><!--Div class for container-->           
             <div class="sixteen columns">
                 <?php

@@ -176,24 +176,6 @@ class ShoppingBasket {
         }
     }
 
-    function DisplayBasket(){
-        if(isset($_SESSION['cart'])){
-        foreach($_SESSION['cart'] AS $key => $value) {
-        print_r($key);
-        echo "ImageID = $key Quantity = $value";
-        echo "</br>";
-        //echo '<a href="emptyCart.php?ImageID=' . $key.'">Empty Cart</a>';
-        //echo '<a href="emptyCart.php">Empty Cart</a>';
-        }
-
-
-        echo '<a href="emptyCart.php">Empty Cart</a>';
-        echo '</br>';
-        echo '<a href="checkout.php">Review and Checkout</a>';
-        
-    }
-}
-
     function DisplayBasket2(){
         if(isset($_SESSION['cart'])){
          foreach($_SESSION['cart'] AS $key => $value) {
@@ -221,9 +203,13 @@ class ShoppingBasket {
             echo "</ul>";
              }    
          }
-        echo '<a href="emptyCart.php">Empty Cart</a>';
-        echo '</br>';
-        echo '<a href="checkout.php">Review and Checkout</a>'; 
+        
+
+        
+        echo '<a href="emptyCart.php"><img src = "assets/images/empty.png" id="icon"</a>';
+        echo '<a href="checkout.php"><img src = "assets/images/reviewCheckout.png" id="icon"</a>';
+  
+        //echo '<a href="checkout.php"<img src = "assets/images/reviewCheckout.png"</a>';
     }
 }
 
@@ -243,6 +229,7 @@ class ShoppingBasket {
             echo "<th> Remove</th>";
             echo "<th> Add</th>";
             echo "</tr>";
+        echo '<form class="pure-form" method="post" action="process.php">';
         foreach($_SESSION['cart'] AS $key => $value) {
         $result = $this->_db->query("SELECT * FROM images WHERE ImageID = $key");
         foreach($result as $row) {
@@ -278,18 +265,27 @@ class ShoppingBasket {
             echo "&pound;".$total;
             echo "</td>";
             echo "<td>";
-            echo '<a href="checkout.php?Remove=1&ImageID='.$row['ImageID'].'">Remove Item</a>';
+            echo '<a href="checkout.php?Remove=1&ImageID='.$row['ImageID'].'"><img src = "assets/images/remove.png" id="icon"</a>';
             echo "</td>";
             echo "<td>";
-            echo '<a href="checkout.php?Add=1&ImageID='.$row['ImageID'].'">Add Item</a>';
+            echo '<a href="checkout.php?Add=1&ImageID='.$row['ImageID'].'"><img src = "assets/images/add.png" id="icon"</a>';
             echo "</td>";
             echo "</tr>";
+            echo '<input type="hidden" name="item_name['.$cart_items.']" value="'.$row['ImageName'].'" />';
+            echo '<input type="hidden" name="item_code['.$cart_items.']" value="'.$key.'" />';
+            echo '<input type="hidden" name="item_desc['.$cart_items.']" value="'.$row['ImageDescription'].'" />';
+            echo '<input type="hidden" name="item_qty['.$cart_items.']" value="'.$value.'" />';
         //Table etc etc
         }
         }
         echo "</table>";
 
         $this->TotalPrice();
+        
+        echo '<input type="hidden" name="total['.$cart_items.']" value="'.$_SESSION['testtotal'].'" />';
+        
+        echo '<input type="submit" value="Pay Now" />';
+        echo '</form>';
 
         //CHECKOUT GOES HERE
         }
@@ -310,23 +306,20 @@ class ShoppingBasket {
             } 
                 foreach($_SESSION['grandTotal'] as $grandTotal){
                     $grandTotal = array_sum($totalup);
+                    $_SESSION['testtotal'] = $grandTotal;
                 }
 
-                echo "<table>";
+                echo "<table align='right'>";
                 echo "<tr>";
                 echo "<th>Grand Total</th>";
                 echo "<th>Empty</th>";
-                echo "<th>Checkout</th>";
                 echo "</tr>";
                 echo "<tr>";
                 echo "<td>";
                 echo "&pound;".$grandTotal;
                 echo "</td>";
                 echo "<td>";
-                echo '<a href="emptyCart.php">Empty Cart</a>';
-                echo "</td>";
-                echo "<td>";
-                echo '<a href=".php">Checkout</a>';
+                echo '<a href="emptyCart.php"><img src = "assets/images/empty.png" id="icon"</a>';
                 echo "</td>";
                 echo "</tr>";
                 echo "</table>";       

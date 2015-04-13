@@ -36,15 +36,22 @@
             </div><!--End Div for container slides-->
         </div><!--End Div for container-->
     </div><!--End Div for band header-->
+        <div class="band title">
+        <div class="container">
+            <div class="sixteen columns">
+            <h2> Home </h2>
+            </div>
+        </div>
+    </div>
     <div class="band content"><!--Div class for band content-->
         <div class="container"><!--Div class for container-->
-            <div class="ten columns"><!--Div class for ten columns-->
+            <div class="ten columns off-set-by one"><!--Div class for ten columns-->
                 <?php 
-               require 'content/index_content.php'; ?><!--Requires index_content.php-->
+               require 'content/welcomeMessage.php'; ?><!--Requires index_content.php-->
             </div><!--End Div for ten columns-->
-            <div class="six columns"><!--Div for six columns-->
+            <div class="four columns off-set-by one"><!--Div for six columns-->
                 <?php 
-                require 'content/coming_soon.php'; ?><!--Requires coming_soon.php-->
+                 require 'content/functionality.php'; ?><!--Requires coming_soon.php-->
             </div><!--End Div for six columns-->
         </div><!--End Div for container-->
     </div><!--End Div for band content-->

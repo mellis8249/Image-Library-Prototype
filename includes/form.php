@@ -30,9 +30,13 @@ form {
     <label for="ImageDescription">Image Description: 
     <input type="text" id="ImageDescription" name="ImageDescription"/>
     </label>
-    <label for="category">Category: 
-    <input type="text" id="category" name="category"/>
-    </label>
+    <label for="category">Category: </label>
+    <select id = "category" name="category"/>
+    <option>Category1</option>
+    <option>Category2</option>
+    <option>Category3</option>
+    <option>Category4</option>
+    </select>
     <input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
     <label for="thumbnail">Image to be used as Thumbnail:
     <input type="file" id="thumbnail" name="thumbnail" />

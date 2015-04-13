@@ -36,6 +36,13 @@
             </div><!--End Div for container slides-->
         </div><!--End Div for container-->
     </div><!--End Div for band header-->
+            <div class="band title">
+        <div class="container">
+            <div class="sixteen columns">
+            <h2> Login/Register </h2>
+            </div>
+        </div>
+    </div>
     <div class="band content"><!--Div class for band content-->
         <div class="container"><!--Div class for container-->
             <div class="ten columns"><!--Div class for ten columns-->

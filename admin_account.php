@@ -44,17 +44,24 @@ if (!isset($_SESSION['id'])){
             </div><!--End Div for container slides-->
         </div><!--End Div for container-->
     </div><!--End Div for band header-->
+    <div class="band title">
+        <div class="container">
+            <div class="sixteen columns">
+            <h2> Admin Account </h2>
+            </div>
+        </div>
+    </div>
     <div class="band content"><!--Div class for band content-->
         <div class="container"><!--Div class for container-->
             <div class="ten columns"><!--Div class for ten columns-->
                 <?php 
                 require 'includes/deleteImage.php';
                 require 'includes/displayAdminImages.php';
-                require 'login/addStudent.php'; ?><!--Requires addStudent.php-->
+                ?><!--Requires addStudent.php-->
             </div><!--End Div for ten columns-->
             <div class="six columns"><!--Div for six columns-->
                 <?php 
-               // require 'includes/content.php'; ?><!--Requires content.php-->
+                 require 'login/addStudent.php';?><!--Requires content.php-->
             </div><!--End Div for six columns-->
         </div><!--End Div for container-->
     </div><!--End Div for band content-->

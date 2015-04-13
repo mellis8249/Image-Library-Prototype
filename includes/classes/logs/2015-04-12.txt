@@ -1,3 +1,19 @@
+Time : 20:05:04
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'product_code' in 'where clause'
+Raw SQL : SELECT * FROM images WHERE product_code='80' LIMIT 1
+
+Time : 17:43:43
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'valadan_co_uk.products' doesn't exist
+Raw SQL : SELECT product_name, product_desc, price FROM products WHERE product_code='79' LIMIT 1
+
+Time : 17:42:52
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'valadan_co_uk.products' doesn't exist
+Raw SQL : SELECT product_name, product_desc, price FROM products WHERE product_code='' LIMIT 1
+
+Time : 17:39:52
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'valadan_co_uk.products' doesn't exist
+Raw SQL : SELECT product_name, product_desc, price FROM products WHERE product_code='' LIMIT 1
+
 Time : 00:39:20
 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
 Raw SQL : SELECT * FROM thumbnails WHERE ImageID =
