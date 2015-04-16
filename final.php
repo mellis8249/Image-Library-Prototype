@@ -40,33 +40,18 @@
        <div class="band title">
         <div class="container">
             <div class="sixteen columns">
-                <h2> Your Images</h2>
+                <h2> Your Order</h2>
             </div>
 
         </div>
     </div>
-    
-    
-    
-    <div class="band displayImages"><!--Div class for band content2-->
+    <div class="band final"><!--Div class for band content2-->
         <div class="container"><!--Div class for container-->
-            <div class="eleven columns"><!--Div class for sixteen columns-->
+            <div class="sixteen columns"><!--Div class for sixteen columns-->
                 <?php 
-                
-                  require 'includes/mail2.php';
-             //   require 'includes/insertCart.php';
-            //    require 'includes/displayImages.php' ?><!--Requires display_images.php-->
+                require 'paypalRetrieve.php';
+                  ?>
             </div><!--End Div for sixteen columns-->
-            <div class="two columns">
-                <?php
-             //   require 'includes/displayCategory.php';
-                ?>
-            </div>
-            <div class="three columns">
-                <?php
-              //  require 'includes/displayCart.php';
-                ?>
-            </div>
         </div><!--End Div for container-->
     </div><!--End Div for band content2-->
     <div class="band footer"><!--Div class for band footer-->

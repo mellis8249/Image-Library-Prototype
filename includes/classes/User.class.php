@@ -1,6 +1,12 @@
 <?php
-	//Class for User (Handles Register/Login/Update)
-	
+/**
+ * User - A Class that handles login register of all account types.
+ * Provides functionality depending on what type of user is logged in, such as change password/email
+ *
+ * @author		Author: Mark Ellis
+ * @git 		https://github.com/
+ */
+ 
 	class User {
 		//Variables
 		private $_db;
@@ -110,7 +116,9 @@
 			//Checks if register form has been submitted
 			if (isset($_POST['register'])){
 				//Checks if the fields are set and not empty
-				if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['confirm']) && !empty($_POST['email'])){
+				if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['confirm']) && !empty($_POST['email'])){
+				    
+				    
 					//Checks if password is equal to confirm
 					if ($_POST['password'] == $_POST['confirm']) {
 						//Sets $first_user to empty_db();
@@ -119,11 +127,17 @@
 						$email = $_POST['email'];
 						$username = $_POST['username'];
 						$password = sha1($_POST['password']);
+						$firstname = $_POST['firstname'];
+						$lastname = $_POST['lastname'];
 						//Escape output
 						$email = $this->escape_output($email);
 						$username = $this->escape_output($username);
 						$password = $this->escape_output($password);
+						$firstname = $this->escape_output($firstname);
+						$lastname = $this->escape_output($lastname);
 						//Clean string
+						$firstname = $this->clean_string($firstname);
+						$lastname = $this->clean_string($lastname);
 						$email = $this->clean_string($email);
 						$username = $this->clean_string($username);
 						$password = $this->clean_string($password);
@@ -132,8 +146,12 @@
 						if ($row = $this->_db->query('SELECT username FROM users WHERE username = "'.$username.'" ')){
 						    $this->error[] = 'Username already exists';
 						   
-						} else {
-						 $this->_db->query('INSERT INTO users (username, password, email) VALUES ("'.$username.'", "'.$password.'","'.$email.'")');
+						} 
+						if ($row = $this->_db->query('SELECT email FROM users WHERE email = "'.$email.'"')){
+					    $this->error[] = 'Email already exists';
+					    }
+						else {
+						$this->_db->query('INSERT INTO users (username, password, email, firstname, lastname) VALUES ("'.$username.'", "'.$password.'","'.$email.'", "'.$firstname.'","'.$lastname.'")');
 						
 							$this->msg[] = 'Registration Successful.';
 					
@@ -146,6 +164,8 @@
 							$_SESSION['id'] = session_id();
 							$_SESSION['username'] = $username;
 							$_SESSION['email'] = $email;
+						//	$_SESSION['firstname'] = $firstname;
+						//	$_SESSION['lastname'] = $lastname;
 							$_SESSION['is_logged'] = true;
 							//Sets is_logged to true
 							$this->is_logged = true;
@@ -154,13 +174,14 @@
 							$_SESSION['msg'] = $this->msg;
 						}
 					
-					}else {
+					}
+					else {
 						//Error message
 						$this->error[] = 'Password don\'t match.';
 					}
 				}
 				//Checks if the fields are empty
-				elseif (empty($_POST['username']) && empty($_POST['password']) && empty($_POST['email']) && empty($_POST['confirm'])) {
+				elseif (empty($_POST['username']) && empty($_POST['password']) && empty($_POST['email']) && empty($_POST['confirm']) && empty($_POST['firstname']) && empty($_POST['lastname'])) {
 					//Error message
 					$this->error[] = 'Please fill in all fields.';
 				}
@@ -179,6 +200,15 @@
 					//Error message
 					$this->error[] = 'You need to confirm the password';
 				}
+				else if (empty($_POST['firstname'])){
+				    $this->error[] = 'Firstname field was empty';
+				}
+				
+				else if (empty($_POST['lastname'])){
+				    $this->error[] = 'Lastname field was empty';
+				}
+				   
+				
 			}
 		}
 		
@@ -188,10 +218,14 @@
 			//Checks if the add student form is submitted
 			if (isset($_POST['addStudent'])){
 				//Checks if the fields are set and not empty
-				if(!empty($_POST['username']) && !empty($_POST['email'])){
+				if(!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['firstname']) && !empty($_POST['lastname'])){
 					//if ($_POST['password'] == $_POST['confirm']) { bang a c number finder in here
 					//Stores $_POST
 					$username = $_POST['username'];
+					$email = $_POST['email'];
+					$firstname = $_POST['firstname'];
+					$lastname = $_POST['lastname'];
+					
 					//Generates a random password
 					$password = $this->generatePassword();
 					//Stores random password
@@ -200,20 +234,37 @@
 					$password = sha1($password);
 					//Stores $_POST
 					$email = $_POST['email'];
+					
+					//Escape output
+					$email = $this->escape_output($email);
+					$username = $this->escape_output($username);
+					$password = $this->escape_output($password);
+					$firstname = $this->escape_output($firstname);
+					$lastname = $this->escape_output($lastname);
+					//Clean string
+					$firstname = $this->clean_string($firstname);
+					$lastname = $this->clean_string($lastname);
+					$email = $this->clean_string($email);
+					$username = $this->clean_string($username);
+					$password = $this->clean_string($password);
+					
 					if ($row = $this->_db->query('SELECT username FROM users WHERE username = "'.$username.'" ')){
 						$this->error[] = 'Username already exists';
 					}
+					if ($row = $this->_db->query('SELECT email FROM users WHERE email = "'.$email.'"')){
+					    $this->error[] = 'Email already exists';
+					}
 					else {
 					//Creates the query to insert user into the database and runs the query
-					$this->_db->query('INSERT INTO users (username, password, email, type) VALUES ("'.$username.'", "'.$password.'","'.$email.'", "2")');
+					$this->_db->query('INSERT INTO users (username, password, email, firstname, lastname, type) VALUES ("'.$username.'", "'.$password.'","'.$email.'", "'.$firstname.'", "'.$lastname.'", "2")');
 					//Success message
 					$this->msg[] = 'Student Added.';
 					$this->msg[] = $random;
 					/* Emails the password to the Student */
 					//Puts the hosts email in a variable
-					$to = "m.ellis8249@student.leedsbeckett.ac.uk";
+					$to = $email;
 					//Puts the users email in a variable
-					$from = $email;
+					$from =  "m.ellis@valadan.co.uk";
 					//Creates the email content and also a copy for the host
 					$subject = "Prototype: Your student login.";
 					$subject2 = "Copy of your form submission";
@@ -262,11 +313,14 @@
 							$_SESSION['id'] = session_id();
 							$_SESSION['username'] = $this->username;
 							//Creates the query to select type from users depending on username and password and runs the query storing the result in $result
-							$result = $this->_db->query('SELECT type FROM users WHERE username="'.$this->username.'" AND password = "'.$this->password.'"');
+							$result = $this->_db->query('SELECT type, email, firstname, lastname FROM users WHERE username="'.$this->username.'" AND password = "'.$this->password.'"');
 							//Iterates $result as $row
 							foreach ($result as $row){
 								//Stores type in session variable
 								$_SESSION['type'] = $row['type'];
+								$_SESSION['email'] = $row['email'];
+								$_SESSION['firstname'] = $row['firstname'];
+								$_SESSION['lastname'] = $row['lastname'];
 							}
 							//Sets $_SESSION['is_logged'] variable to true
 							$_SESSION['is_logged'] = true;
@@ -274,7 +328,7 @@
 							$this->is_logged = true;
 							//If is_logged is true displays success messages
 							if($this->is_logged = true){
-								echo '<meta http-equiv="refresh" content= "0;URL=?r=1" />';
+								echo '<meta http-equiv="refresh" content= "0;URL=images.php" />';
 							}
 						} else $this->error[] = 'Wrong username or password.';
 						//Error message
@@ -365,10 +419,12 @@
 		function logout() {
 			//Unsets session
 			session_unset();
+			session_unset($_SESSION['cart']);
 			//Destroys session
 			session_destroy();
 			//Sets is_logged to false
 			$this->is_logged = false;
+				echo '<meta http-equiv="refresh" content= "0;URL=images.php" />';
 		}
 	}
 

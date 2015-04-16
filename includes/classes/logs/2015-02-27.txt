@@ -1,7 +1,0 @@
-Time : 03:27:54
-SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'username FROM users WHERE username = "Mark"' at line 1
-Raw SQL : SELECT * username FROM users WHERE username = "Mark"
-
-Time : 03:27:14
-SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'username FROM users WHERE username = "Mark"' at line 1
-Raw SQL : SELECT * username FROM users WHERE username = "Mark"

@@ -18,10 +18,16 @@
                 <?php
                 require 'includes/header.php'; ?><!--Requires header.php-->
             </div>
-            <div class="ten columns"><!--Div class for ten columns-->
+            <div class="six columns"><!--Div class for ten columns-->
                 <?php
                 require 'includes/nav.php'; ?><!--Requires nav.php-->
             </div><!--End Div for sixteen columns-->
+            <div class="four columns">
+            <?php
+             require 'login/loginInfo.php';
+            ?>
+            
+            </div>
             <div class="container slides"><!--Div class for container slides-->
                 <ul class="rslides clearfix"><!--ul class for rslides-->
                     <li><img alt="" src="assets/images/1.jpg"></li>

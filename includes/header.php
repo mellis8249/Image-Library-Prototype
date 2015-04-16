@@ -1,2 +1,2 @@
 <!--Includes the below in the file it's required in-->
-<h1>Prototype</h1>
+<h1>Image Library</h1>

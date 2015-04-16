@@ -1,4 +1,4 @@
-<?php  require 'includes/head.php'; //Requires head.php
+<?php require 'includes/head.php'; //Requires head.php
 //Checks if any Session variables are set
 if (!isset($_SESSION['id'])){
     header('location:protectedpage.php');
@@ -51,7 +51,7 @@ if (!isset($_SESSION['id'])){
             </div>
         </div>
     </div>
-    <div class="band content"><!--Div class for band content-->
+    <div class="band adminAccount"><!--Div class for band content-->
         <div class="container"><!--Div class for container-->
             <div class="ten columns"><!--Div class for ten columns-->
                 <?php 

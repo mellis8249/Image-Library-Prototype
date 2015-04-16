@@ -5,7 +5,13 @@
  * @author		Author: Vivek Wicky Aswal. (https://twitter.com/#!/VivekWickyAswal)
  * @git 		https://github.com/indieteq/PHP-MySQL-PDO-Database-Class
  * @version      0.2ab
- *
+ * 
+ * Used by - 
+ * Mark Ellis - c3374267
+ * Project -
+ * Image Library 
+ * Changes -
+ * Not necessary to make changes. 
  */
 require("Log.class.php");
 class DB

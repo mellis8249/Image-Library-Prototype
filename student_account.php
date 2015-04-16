@@ -51,7 +51,7 @@ if (!isset($_SESSION['id'])){
             </div>
         </div>
     </div>
-    <div class="band content"><!--Div class for band content-->
+    <div class="band studentAccount"><!--Div class for band content-->
         <div class="container"><!--Div class for container-->
             <div class="ten columns"><!--Div class for ten columns-->
                 <?php 

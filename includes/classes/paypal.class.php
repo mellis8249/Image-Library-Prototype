@@ -1,6 +1,13 @@
 <?php
+/**
+ * PayPal Class - A Class that handles Paypal checkout.
+ * Adapted from http://www.sanwebe.com/2012/07/paypal-expresscheckout-with-php
+ *
+ * @author		Author: Mark Ellis
+ * @git 		https://github.com/
+ */
 class MyPayPal {
-    	
+    
 	function PPHttpPost($methodName_, $nvpStr_, $PayPalApiUsername, $PayPalApiPassword, $PayPalApiSignature, $PayPalMode) {
 			// Set up your API credentials, PayPal end point, and API version.
 			$API_UserName = urlencode($PayPalApiUsername);
@@ -8,11 +15,8 @@ class MyPayPal {
 			$API_Signature = urlencode($PayPalApiSignature);
 			
 			$paypalmode = ($PayPalMode=='sandbox') ? '.sandbox' : '';
-			
-		//	$paypalmode = 'sandbox';
 	
 			$API_Endpoint = "https://api-3t".$paypalmode.".paypal.com/nvp";
-		  //  $API_Endpoint = "https://api-3t.sandbox.paypal.com/nvp";
 			$version = urlencode('109.0');
 		
 			// Set the curl parameters.

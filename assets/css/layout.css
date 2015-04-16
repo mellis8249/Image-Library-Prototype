@@ -35,6 +35,9 @@ label{font-size: 12px; color: #3b464b;}
 ul li a{font-size: 18px; font-family: 'Rokkitt', serif; color: #ebebeb;}
 h1{font-size: 30px; font-family: 'Rokkitt', serif; color: #23353e;}
 h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
+label{display:block;}
+input{display:block; border: 1px solid gray;}
+
 
 /* Container */
 .container {
@@ -130,10 +133,6 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
 	cursor:pointer;
 }
 
-.band.header #login {
-
-}
-
 .band.title {
   height: 50px;
   margin-top:2px;
@@ -196,11 +195,6 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
     display:block;
 	border: 1px solid gray;
 }
-
-.band.search form {
-	height: 10px;
-}
-
 
 .band.displayImages {
 	background: #e3e3e3 url(../images/body-bg.jpg);
@@ -266,14 +260,60 @@ h2{font-size: 22px; font-family: 'Rokkitt', serif; color: #23353e;}
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.band.reviewOrder #test {
-padding: 10px 10px 1000px 10px;
-}
-
 .band.reviewOrder #icon {
     padding: 10px;
     
 }
+
+.band.studentAccount {
+    background: #e3e3e3 url(../images/body-bg.jpg);
+	padding: 0 0 200px 0px;
+}
+
+.band.studentAccount table{
+    width: auto;
+	display: inline-block;
+	float:left;
+	table-layout:fixed;
+}
+
+.band.studentAccount th, td {
+
+    padding: 11px 11px 0 11px;
+    border: 5px solid #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.band.adminAccount {
+    background: #e3e3e3 url(../images/body-bg.jpg);
+	padding: 0 0 200px 0px;
+}
+
+.band.adminAccount label{
+	display: block;
+}
+
+.band.adminAccount input {
+
+    display:block;
+	border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.band.adminAccount table {
+    width: auto;
+	display: inline-block;
+	float:left;
+	table-layout:fixed;
+}
+
+.band.adminAccount th, td {
+    padding: 11px 11px 0 11px;
+    border: 5px solid #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
 
 .band.content3 {
 	background: #e3e3e3 url(../images/body-bg.jpg);

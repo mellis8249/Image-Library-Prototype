@@ -2,8 +2,8 @@
 <?php
 //Create an instance of Db
 $db = new DB();
-//Create an instance of Blog
+//Create an instance of Image
 $Image = new Image($db);
-//Calls Blog displayBlog() method
+//Calls Image pickedImageDetails() method
 $Image->pickedImageDetails();
 ?>

@@ -1,23 +1,6 @@
 <?php
-/*
-SHOPPING BASKET CLASS
-
-USAGE:
-------
-
-$cart = new ShoppingBasket; Initialize class
-$cart->SaveCookie(TRUE); Set option to save items ina cookie or not. Cookie valid for 1 day.
-$cart->AddToBasket('ITEM_ID', QTY); Add an item to the basket 
-$cart->RemoveFromBasket('ITEM_ID', QTY); Remove item form basket
-$cart->DeleteFromBasket('ITEM_ID'); Removes all of item selected
-$cart->EmptyBasket('ITEM_ID' QTY); Clear the basket
-$cart->GetBasketQty(); Get qty of items in the basket
-$cart->GetBasket(); Returns basket items as an array ITEM_ID => QTY
-
-*/
-
 /**
- * ShoppingBasket
+ * ShoppingBasket Class
  *
  * A simple shopping basket class used to add and delete items from a session based shopping cart
  * @package ShoppingBasket
@@ -26,194 +9,125 @@ $cart->GetBasket(); Returns basket items as an array ITEM_ID => QTY
  * @copyright 2008
  * @version 0.1
  * @access public
+ * 
+ * Used by - Mark Ellis - c3374267
+ * Project - Image Library 
+ * Changes - Adapted from original version, added, changed and deleted methods and also changed original methods to suite needs.
  */
 class ShoppingBasket {
-
+    
+    //Variables
     private $_db;
     public $cookieName = 'ckBasket';
     public $cookieExpire = 86400; // One day
     public $saveCookie = TRUE;
 
-    /**
-     * ShoppingBasket::__construct()
-     *
-     * Construct function. Parses cookie if set.
-     * @return
-     */
+    //Class constructor 
+    public
     function __construct(DB $db) {
-             $this->_db = $db;
-       // session_start();
+        //Uses the Db.class
+        $this->_db = $db;
 
         if (!isset($_SESSION['cart']) && (isset($_COOKIE[$this->cookieName]))) {
             $_SESSION['cart'] = unserialize(base64_decode($_COOKIE[$this->cookieName]));
             $_SESSION['cart'] = array();
-          //  $_SESSION['cart']['test'] = 'hi';
         }
-
     }
 
-    /**
-     * ShoppingBasket::AddToBasket()
-     *
-     * Adds item to basket. If $id already exists in array then qty updated
-     * @param mixed $id - ID of item
-     * @param integer $qty - Qty of items to be added to cart
-     * @return bool
-     */
+    //Method to AddToBasket
+    public
     function AddToBasket($id, $qty = 1) {
 
         if (isset($_SESSION['cart'][$id])) {
+         if ($qty < 1){
            $_SESSION['cart'][$id] = $_SESSION['cart'][$id] + $qty;
-           
-        } else {
+        } 
+        }
+        else {
             $_SESSION['cart'][$id] = $qty;
         }
         $this->SetCookie();
         return true;
     }
     
-   function AddMoreToBasket($id, $qty = 1) {
+    //Method to AddMoreToBasket (unused due to quantity being fixed to 1 for each item)
+    public
+    function AddMoreToBasket($id, $qty = 1) {
         if (isset($_GET['Add'])){
-        if ($_GET['Add'] = 1){
-        if (isset($_SESSION['cart'][$id])) {
-           $_SESSION['cart'][$id] = $_SESSION['cart'][$id] + $qty;
+            if ($_GET['Add'] = 1){
+                if (isset($_SESSION['cart'][$id])) {
+                    $_SESSION['cart'][$id] = $_SESSION['cart'][$id] + $qty;
            
-        } else {
-            $_SESSION['cart'][$id] = $qty;
+                } 
+                else {
+                    $_SESSION['cart'][$id] = $qty;
+                }
+            }
         }
-
-        if($_SESSION['cart'][$id] == 1){
-           // echo '<meta http-equiv="refresh" content= "0;URL=?r=1" />';
-        }
-        $this->SetCookie();
-        return true;
-    }
-}
-}
-
-    /**
-     * ShoppingBasket::RemoveFromBasket()
-     *
-     * Removes item from basket. If final qty less than 1 then item deleted.
-     * @param mixed $id - Id of item
-     * @param integer $qty - Qty of items to be removed to cart
-     * @see DeleteFromBasket()
-     * @return bool
-     */
-    /*function RemoveFromBasket($id, $qty = 1) {
-
-        if (isset($_SESSION['cart'][$id])) {
-            $_SESSION['cart'][$id] = $_SESSION['cart'][$id] - $qty;
-        }
-
-        if ($_SESSION['cart'][$id] <= 0) {
-            $this->DeleteFromBasket($id);
-        }
-        
-		$this->SetCookie();
-        return true;
-     //   exit();
-    }*/
+    } 
     
+    //Method to RemoveFromBasket
+    public
     function RemoveFromBasket($id, $qty = 1) {
 
         if (isset($_SESSION['cart'][$id])) {
-        if (isset($_GET['Remove'])){
-        if ($_GET['Remove'] = 1){
-            $_SESSION['cart'][$id] = $_SESSION['cart'][$id] - $qty;
+            if (isset($_GET['Remove'])){
+                if ($_GET['Remove'] = 1){
+                    $_SESSION['cart'][$id] = $_SESSION['cart'][$id] - $qty;
         
-        if ($_SESSION['cart'][$id] <= 0) {
-            $this->DeleteFromBasket($id);
+                if ($_SESSION['cart'][$id] <= 0) {
+                    $this->DeleteFromBasket($id);
+                }
+		        $this->SetCookie();
+                return true;
+                }
+            }
         }
-		$this->SetCookie();
-        return true;
-     //   exit();
     }
-    }
-    }
-}
 
-    /**
-     * ShoppingBasket::DeleteFromBasket()
-     *
-     * Completely removes item from basket
-     * @param mixed $id
-     * @return bool
-     */
- /*   function DeleteFromBasket($id) {
-        unset($_SESSION['cart'][$id]);
-        $this->SetCookie();
-        return true;
-      //  exit();
-    } */
-    
-    
-        function DeleteFromBasket($id) {
+    //Method to DeleteFromBasket
+    public
+    function DeleteFromBasket($id) {
         unset($_SESSION['cart'][$id]);
         if (empty($_SESSION['cart'])){
             unset($_SESSION['cart']);
         }
         $this->SetCookie();
         return true;
-       // exit();
     }
-
-    /**
-     * ShoppingBasket::GetBasket()
-     *
-     * Returns the basket session as an array of item => qty
-     * @return array $itemArray
-     */
-    function GetBasket() {
-        if (isset($_SESSION['cart'])) {
-            foreach ($_SESSION['cart'] as $k => $v) {
-              $itemArray[$k] = $v;
-            }
-            return $itemArray;
-            exit();
-        } else {
-            return false;
-        }
-    }
-
-    function DisplayBasket2(){
+    
+    //Method for DisplayBasket
+    public
+    function DisplayBasket(){
         if(isset($_SESSION['cart'])){
          foreach($_SESSION['cart'] AS $key => $value) {
             $result = $this->_db->query("SELECT * FROM images WHERE ImageID = $key");
-            // print_r($result);  
-           // echo "</br>"; 
-          //  echo "ImageID = $key";
-           // echo "</br>";
-           // echo "Quantity = $value";
-           // echo "</br>";
-            foreach($result as $row) {
-            echo "<ul>";
-            echo "<li>";
-            echo "Name: ".$row['ImageName'];
-            echo "</li>";
-            echo "<li>";
-            echo "Quantity: ".$value;
-            echo "</li>";
-            echo "<li>";
-            echo "Author: ".$row['Author'];
-            echo "</li>";
-            echo "<li>";
-            echo "Price: &pound;".$row['Price'];
-            echo "</li>";
-            echo "</ul>";
-             }    
-         }
+                foreach($result as $row) {
+                    echo "<ul>";
+                    echo "<li>";
+                    echo "Name: ".$row['ImageName'];
+                    echo "</li>";
+                    echo "<li>";
+                    echo "Quantity: ".$value;
+                    echo "</li>";
+                    echo "<li>";
+                    echo "Author: ".$row['Author'];
+                    echo "</li>";
+                    echo "<li>";
+                    echo "Price: &pound;".$row['Price'];
+                    echo "</li>";
+                    echo "</ul>";
+                }    
+            }
         
-
-        
-        echo '<a href="emptyCart.php"><img src = "assets/images/empty.png" id="icon"</a>';
-        echo '<a href="checkout.php"><img src = "assets/images/reviewCheckout.png" id="icon"</a>';
-  
-        //echo '<a href="checkout.php"<img src = "assets/images/reviewCheckout.png"</a>';
+        echo '<a href="emptyCart.php"><img src = "assets/images/empty.png" id="icon" title="Empty Basket"</a>';
+        echo '<a href="checkout.php"><img src = "assets/images/reviewCheckout.png" id="icon" title="Review Basket"</a>';
+        }
     }
-}
-
-     function ReviewBasket(){
+    
+    //Method for ReviewBasket
+    public
+    function ReviewBasket(){
         if(isset($_SESSION['cart'])){
             echo "<table>";
             echo "<tr>";
@@ -223,87 +137,90 @@ class ShoppingBasket {
             echo "<th> Description </th>";
             echo "<th> Author </th>";
             echo "<th> Category </th>";
-            echo "<th> Size </th>";
+            echo "<th> Resolution </th>";
+            echo "<th> Print Size (200 DPI) </th>";
+            echo "<th> Print Size (300 DPI) </th>";
             echo "<th> Price </th>";
             echo "<th> Total </th>";
             echo "<th> Remove</th>";
-            echo "<th> Add</th>";
+            //echo "<th> Add</th>";
             echo "</tr>";
-        echo '<form class="pure-form" method="post" action="process.php">';
-        foreach($_SESSION['cart'] AS $key => $value) {
-        $result = $this->_db->query("SELECT * FROM images WHERE ImageID = $key");
-        foreach($result as $row) {
-            $total = $row['Price'] * $value;
-            $_SESSION['total'] = $total;
-            echo "<tbody>";
-            echo "<tr>";
-            echo "<td>";
-            echo $key;
-            echo "</td>";
-            echo "<td>";
-            echo $value;
-            echo "</td>";
-            echo "<td>";
-            echo $row['ImageName'];
-            echo "</td>";
-            echo "<td>";
-            echo $row['ImageDescription'];
-            echo "</td>";
-            echo "<td>";
-            echo $row['Author'];
-            echo "</td>";
-            echo "<td>";
-            echo $row['Category'];
-            echo "</td>";
-            echo "<td>";
-            echo $row['ImageWidth'].' X '.$row['ImageHeight'];
-            echo "</td>";
-            echo "<td>";
-            echo "&pound;".$row['Price'];
-            echo "</td>";
-            echo "<td>";
-            echo "&pound;".$total;
-            echo "</td>";
-            echo "<td>";
-            echo '<a href="checkout.php?Remove=1&ImageID='.$row['ImageID'].'"><img src = "assets/images/remove.png" id="icon"</a>';
-            echo "</td>";
-            echo "<td>";
-            echo '<a href="checkout.php?Add=1&ImageID='.$row['ImageID'].'"><img src = "assets/images/add.png" id="icon"</a>';
-            echo "</td>";
-            echo "</tr>";
-            echo '<input type="hidden" name="item_name['.$cart_items.']" value="'.$row['ImageName'].'" />';
-            echo '<input type="hidden" name="item_code['.$cart_items.']" value="'.$key.'" />';
-            echo '<input type="hidden" name="item_desc['.$cart_items.']" value="'.$row['ImageDescription'].'" />';
-            echo '<input type="hidden" name="item_qty['.$cart_items.']" value="'.$value.'" />';
-        //Table etc etc
-        }
-        }
-        echo "</table>";
-
-        $this->TotalPrice();
-        
-        echo '<input type="hidden" name="total['.$cart_items.']" value="'.$_SESSION['testtotal'].'" />';
-        
-        echo '<input type="submit" value="Pay Now" />';
-        echo '</form>';
-
-        //CHECKOUT GOES HERE
+            echo '<form class="pure-form" method="post" action="paypalSend.php">';
+                foreach($_SESSION['cart'] AS $key => $value) {
+                    $result = $this->_db->query("SELECT * FROM images WHERE ImageID = $key");
+                        foreach($result as $row) {
+                            $total = $row['Price'] * $value;
+                            $_SESSION['total'] = $total;
+                            echo "<tbody>";
+                            echo "<tr>";
+                            echo "<td>";
+                            echo $key;
+                            echo "</td>";
+                            echo "<td>";
+                            echo $value;
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['ImageName'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['ImageDescription'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['Author'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['Category'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['ImageWidth'].' X '.$row['ImageHeight'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['DPIWidth200'].' X '.$row['DPIHeight200'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo $row['DPIWidth300'].' X '.$row['DPIHeight300'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo "&pound;".$row['Price'];
+                            echo "</td>";
+                            echo "<td>";
+                            echo "&pound;".$total;
+                            echo "</td>";
+                            echo "<td>";
+                            echo '<a href="checkout.php?Remove=1&ImageID='.$row['ImageID'].'"><img src = "assets/images/remove.png" id="icon" title="Remove"</a>';
+                            echo "</td>";
+                           // echo "<td>";
+                         //   echo '<a href="checkout.php?Add=1&ImageID='.$row['ImageID'].'"><img src = "assets/images/add.png" id="icon"</a>';
+                          //  echo "</td>";
+                            echo "</tr>";
+                            echo '<input type="hidden" name="item_name['.$cart_items.']" value="'.$row['ImageName'].'" />';
+                            echo '<input type="hidden" name="item_code['.$cart_items.']" value="'.$key.'" />';
+                            echo '<input type="hidden" name="item_desc['.$cart_items.']" value="'.$row['ImageDescription'].'" />';
+                            echo '<input type="hidden" name="item_qty['.$cart_items.']" value="'.$value.'" />';
+                        }
+                    }
+                    
+            echo "</table>";
+            $this->TotalPrice();
+            echo '<input type="hidden" name="total['.$cart_items.']" value="'.$_SESSION['testtotal'].'" />';
+            echo ' <input type="image" src="https://www.paypal.com/en_AU/i/btn/btn_buynow_LG.gif" border="0" width="100" height="50" name="submit" align="right" title="PayPal - The safer, easier way to pay online.">';
+            echo '</form>';
         }
     }
     
+    //Method for TotalPrice
+    public
     function TotalPrice(){
         if (isset($_SESSION['cart'])){
             $sum = 0;
             $totalup = array();
-            foreach($_SESSION['cart'] AS $key => $value) {
-
-                //$result = $this->_db->query("SELECT SUM(Price) as value_sum FROM Images WHERE ImageID=$key", null, PDO::FETCH_ASSOC);
-                $result = $this->_db->query("SELECT SUM(Price) as total FROM images WHERE ImageID=$key");
-                foreach ($result as $row){
-                   $totalup[] = $row['total'] * $value;
-                   $_SESSION['grandTotal'][] = $totalup;
-                }
-            } 
+                foreach($_SESSION['cart'] AS $key => $value) {
+                    $result = $this->_db->query("SELECT SUM(Price) as total FROM images WHERE ImageID=$key");
+                        foreach ($result as $row){
+                            $totalup[] = $row['total'] * $value;
+                            $_SESSION['grandTotal'][] = $totalup;
+                        }
+                } 
                 foreach($_SESSION['grandTotal'] as $grandTotal){
                     $grandTotal = array_sum($totalup);
                     $_SESSION['testtotal'] = $grandTotal;
@@ -319,76 +236,25 @@ class ShoppingBasket {
                 echo "&pound;".$grandTotal;
                 echo "</td>";
                 echo "<td>";
-                echo '<a href="emptyCart.php"><img src = "assets/images/empty.png" id="icon"</a>';
+                echo '<a href="emptyCart.php"><img src = "assets/images/empty.png" id="icon" title="Empty Basket"</a>';
                 echo "</td>";
                 echo "</tr>";
                 echo "</table>";       
         }
     }
-    /**
-     * ShoppingBasket::UpdateBasket()
-     *
-     * Updates a basket item with a specific qty
-     * @param mixed $id - ID of item
-     * @param mixed $qty - Qty of items in basket
-     * @return bool
-     */
-    function UpdateBasket($id, $qty) {
 
-        $qty = ($qty == '') ? 0 : $qty;
-
-        if (isset($_SESSION['cart'][$id])) {
-            $_SESSION['cart'][$id] = $qty;
-
-            if ($_SESSION['cart'][$id] <= 0) {
-                $this->DeleteItem($id);
-                return true;
-                exit();
-            }
-			$this->SetCookie();
-            return true;
-            exit();
-
-        } else {
-            return false;
-        }
-
-    }
-    /**
-     * ShoppingBasket::GetBasketQty()
-     *
-     * Returns the total amount of items in the basket
-     * @return int quantity of items in basket
-     */
-    function GetBasketQty() {
-        if (isset($_SESSION['cart'])) {
-            $qty = 0;
-            foreach ($_SESSION['cart'] as $item) {
-                $qty = $qty + $item;
-            }
-            return $qty;
-        } else {
-            return 0;
-        }
-    }
-    /**
-     * ShoppingBasket::EmptyBasket()
-     *
-     * Completely removes the basket session
-     * @return
-     */
+    
+    //Method for EmptyBasket()
+    public
     function EmptyBasket() {
         unset($_SESSION['cart']);
         $this->SetCookie();
         return true;
     }
-  /**
-   * ShoppingBasket::SetCookie()
-   *
-   * Creates cookie of basket items
-   * @return bool
-   */
-    function SetCookie() {
+
+   //Method to SetCookie (unused but can be turned on)
+   public
+   function SetCookie() {
         if ($this->saveCookie) {
             if (isset($_SESSION['cart'])){
             $string = base64_encode(serialize($_SESSION['cart']));
@@ -399,13 +265,8 @@ class ShoppingBasket {
         return false;
     }
     
-  /**
-   * ShoppingBasket::SaveCookie()
-   *
-   * Sets save cookie option
-   * @param bool $bool
-   * @return bool
-   */
+    //Method to SaveCookie (unused but can turned on)
+    public
     function SaveCookie($bool = TRUE) {
 		$this->saveCookie = $bool;
 		return true;

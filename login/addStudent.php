@@ -28,9 +28,13 @@ $user->addStudent();
 	<?php $user->display_errors(); ?>
 	<?php $user->display_info(); ?>
 	<label for="email">E-mail:</label>
-	<input type="email" id="email" name="email" placeholder="email" />
+	<input type="email" id="email" name="email" placeholder="email" required />
 	<label for="username">Username:</label>
-	<input type="text" id="username" name="username" placeholder="username" />
+	<input type="text" id="username" name="username" placeholder="username" pattern=".{5,20}"  required title="5 to 20 characters"/>
+	<label for="username">Firstname:</label>
+	<input type="text" id="firstname" name="firstname" placeholder="firstname" required />
+	<label for="username">Lastname:</label>
+	<input type="text" id="lastname" name="lastname" placeholder="lastname" required />
 	<button id="button-addStudent" type="submit" name="addStudent" value="Add Student" class="button-addStudent pure-button">Add Student</button>
 </fieldset>
 </form>

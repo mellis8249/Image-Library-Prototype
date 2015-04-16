@@ -50,9 +50,6 @@
 
         </div>
     </div>
-    
-    
-    
     <div class="band displayImages"><!--Div class for band content2-->
         <div class="container"><!--Div class for container-->
             <div class="eleven columns"><!--Div class for sixteen columns-->
@@ -67,7 +64,9 @@
             </div>
             <div class="three columns">
                 <?php
+                if (isset($_SESSION['id'])){
                 require 'includes/displayCart.php';
+                 }
                 ?>
             </div>
         </div><!--End Div for container-->

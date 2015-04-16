@@ -24,6 +24,7 @@
             </div><!--End Div for sixteen columns-->
             <div class="four columns"> <!--Div for four columns-->
                 <?php
+                require 'login/loginInfo.php';
                 require 'login/logout.php'; ?><!--Requires loginInfo.php-->
             </div><!--End div for four columns-->
             <div class="container slides"><!--Div class for container slides-->

@@ -1,5 +1,9 @@
-<?php  require 'includes/head.php';
-//Requires head.php ?>
+<?php  require 'includes/head.php'; //Requires head.php
+//Checks if any Session variables are set
+if (!isset($_SESSION['id'])){
+    header('location:protectedpage.php');
+    }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->

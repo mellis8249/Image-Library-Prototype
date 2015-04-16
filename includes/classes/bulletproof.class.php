@@ -1,5 +1,4 @@
 <?php
-
 /**
  * BULLETPROOF,  
  *
@@ -16,6 +15,13 @@
  * @author      Bivoc 
  * @link        https://github.com/bivoc/BulletProof
  * @license     Luke 3:11 ( Free )
+ * 
+ * Used by - 
+ * Mark Ellis - c3374267
+ * Project -
+ * Image Library 
+ * Changes -
+ * Not necessary to make changes. 
  */
 namespace ImageUploader;
 

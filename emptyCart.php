@@ -1,6 +1,6 @@
 <?php
 require_once 'includes/classes/Db.class.php';
-require_once 'includes/classes/shoppingbasket.class.php';
+require_once 'includes/classes/Shoppingbasket.class.php';
 require_once 'config/init.php';
 
 $db = new DB();
